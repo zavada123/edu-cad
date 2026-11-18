@@ -15,7 +15,7 @@
   import { preloadFont } from '$lib/akse/textGeometry';
   import { setAkseConfig, type AkseStoragePort, type AkseSession } from '$lib/config';
   import { detectBrowserStorage, type StorageCapabilities } from '$lib/capabilities';
-  import { resolveTexts, type AkseTexts, type AkseLocale } from '$lib/texts';
+  import { resolveTexts, AKSE_LOCALES, type AkseTexts, type AkseLocale } from '$lib/texts';
 
   let {
     storage,
@@ -26,10 +26,11 @@
     fontUrl = '/fonts/inter-regular.ttf',
     loadError = null,
     texts = undefined,
-    locale = 'no',
+    locale = 'uk',
     maxStlTriangles = 500_000,
     guide = null,
     onGuideClose,
+    onGuideComplete,
     onOpenGuides,
   } = $props<{
     storage?: AkseStoragePort;
@@ -48,6 +49,8 @@
     guide?: AkseGuide | null;
     /** Kalles når brukeren lukker guiden (host nullstiller typisk `guide`-prop-en). */
     onGuideClose?: () => void;
+    /** Kalles én gang når alle steg i guiden er passert. */
+    onGuideComplete?: (guideId: string) => void;
     /** Vis «Start en guide»-knapp i toolbaren; host åpner sin guide-velger. */
     onOpenGuides?: () => void;
   }>();
@@ -57,7 +60,7 @@
   function readStoredLocale(): AkseLocale | null {
     if (typeof localStorage === 'undefined') return null;
     const v = localStorage.getItem(LOCALE_KEY);
-    return v === 'no' || v === 'en' ? v : null;
+    return (AKSE_LOCALES as readonly string[]).includes(v ?? '') ? (v as AkseLocale) : null;
   }
   let localeState = $state<AkseLocale>(readStoredLocale() ?? locale);
   function setLocale(l: AkseLocale) {
@@ -299,7 +302,7 @@
   </div>
   {#if guide}
     {#key guide.id}
-      <AkseGuideRunner {guide} onClose={() => onGuideClose?.()} />
+      <AkseGuideRunner {guide} onClose={() => onGuideClose?.()} onComplete={(id: string) => onGuideComplete?.(id)} />
     {/key}
   {/if}
 </div>

@@ -5,6 +5,8 @@
 import * as THREE from 'three';
 import { STLExporter } from 'three/examples/jsm/exporters/STLExporter.js';
 import type { CompiledMesh } from './csgEngine';
+import type { AkseTexts } from '$lib/texts';
+import { interpolate } from '$lib/texts';
 
 export interface ExportValidation {
   ok: boolean;
@@ -24,10 +26,11 @@ export interface ExportResult {
 export function validateForExport(
   compiled: CompiledMesh[],
   workplaneSize: [number, number, number],
+  texts: Pick<AkseTexts, 'exportEmpty' | 'exportBelowPlate' | 'exportFloating' | 'exportOutOfBounds'>,
 ): ExportValidation {
   const meshes = compiled.filter((c) => c.mesh).map((c) => c.mesh!);
   if (meshes.length === 0) {
-    return { ok: false, warning: 'Prosjektet er tomt eller består bare av hull — ingenting å printe.' };
+    return { ok: false, warning: texts.exportEmpty };
   }
 
   const overall = new THREE.Box3();
@@ -45,14 +48,14 @@ export function validateForExport(
   if (min.y < -EPS) {
     return {
       ok: false,
-      warning: 'Noe ligger under printplaten. Flytt figurene opp slik at de står på eller over platen (bunnen på z = 0).',
+      warning: texts.exportBelowPlate,
     };
   }
   // Alt svever over platen — ingenting hviler på den?
   if (min.y > EPS) {
     return {
       ok: false,
-      warning: 'Ingen figurer ligger på printplaten — modellen svever i lufta. Senk figurene ned til platen før du printer.',
+      warning: texts.exportFloating,
     };
   }
 
@@ -65,7 +68,7 @@ export function validateForExport(
     return {
       ok: true,
       outOfBounds: true,
-      warning: `Modellen går utenfor printområdet (${w}×${d}×${h}mm). Vil du eksportere likevel?`,
+      warning: interpolate(texts.exportOutOfBounds, { size: `${w}×${d}×${h}` }),
     };
   }
   return { ok: true };

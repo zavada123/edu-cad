@@ -180,7 +180,7 @@
   {#if status === 'empty'}
     <div class="overlay">{config.texts.scribblePreviewEmpty}</div>
   {:else if status === 'error'}
-    <div class="overlay note">Kunne ikke oppdatere 3D</div>
+    <div class="overlay note">{config.texts.scribblePreviewError}</div>
   {/if}
 </div>
 

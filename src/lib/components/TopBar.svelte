@@ -9,6 +9,8 @@
   import AkseOpenProjectModal from './AkseOpenProjectModal.svelte';
   import AkseSaveProjectModal from './AkseSaveProjectModal.svelte';
   import { getAkseConfig } from '$lib/config';
+  import { AKSE_LOCALES } from '$lib/texts';
+  import { BRAND_NAME, BRAND_ORG } from '$lib/brand';
   import { generateUuidIsh } from '$lib/util/uuid';
   import { selectAllOnFocus } from '$lib/util/selectAllOnFocus';
 
@@ -26,7 +28,7 @@
     // SceneCanvas allerede har kompilert, så eksporten er rask. Motoren disposes
     // IKKE her — den eies av Akse.svelte og deles med scenen.
     const compiled = csgEngine.compile(store.project.shapes);
-    const validation = validateForExport(compiled, store.project.workplaneSize);
+    const validation = validateForExport(compiled, store.project.workplaneSize, config.texts);
 
     if (!validation.ok) {
       alert(validation.warning);
@@ -74,8 +76,8 @@
   <div class="akse-logo" title={config.texts.topbarLogoTitle}>
     <i class="fa-solid fa-cube logo-icon"></i>
     <span class="logo-stack">
-      <span class="logo-text">Akse</span>
-      <span class="logo-tagline">{config.texts.topbarLogoTaglineBefore}<strong>Skaperiet</strong>{config.texts.topbarLogoTaglineAfter}</span>
+      <span class="logo-text">{BRAND_NAME}</span>
+      <span class="logo-tagline">{config.texts.topbarLogoTaglineBefore}<strong>{BRAND_ORG}</strong>{config.texts.topbarLogoTaglineAfter}</span>
     </span>
   </div>
 
@@ -229,10 +231,10 @@
   <button
     type="button"
     class="tool-btn lang-toggle"
-    onclick={() => config.setLocale(config.locale === 'no' ? 'en' : 'no')}
+    onclick={() => config.setLocale(AKSE_LOCALES[(AKSE_LOCALES.indexOf(config.locale) + 1) % AKSE_LOCALES.length])}
     title={config.texts.topbarLanguageToggle}
     aria-label={config.texts.topbarLanguageToggle}
-  >{config.locale === 'no' ? 'EN' : 'NO'}</button>
+  >{AKSE_LOCALES[(AKSE_LOCALES.indexOf(config.locale) + 1) % AKSE_LOCALES.length].toUpperCase()}</button>
 
   {#if store.readOnly}
     <button type="button" class="primary-btn" onclick={handleClone} title={config.texts.topbarCloneTitle}>

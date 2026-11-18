@@ -7,7 +7,9 @@ const config = {
   kit: {
     // SPA-modus: appen er klient-only (ssr=false i +layout.js) og lagrer i
     // localStorage → ingen server. fallback gir én HTML som alle ruter laster.
-    adapter: adapter({ fallback: 'index.html' })
+    adapter: adapter({ fallback: 'index.html' }),
+    // EduProstir віддає тренажер зі сторінки /cad/: BASE_PATH=/cad npm run build.
+    paths: { base: process.env.BASE_PATH ?? '' }
   }
 };
 

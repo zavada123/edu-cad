@@ -1,21 +1,19 @@
 <script>
+  // Шрифти й іконки лежать поруч із тренажером, а не на CDN: шкільна мережа часто блокує сторонні сайти,
+  // і браузер учня не звертається до Google Fonts чи cdnjs.
+  import '@fortawesome/fontawesome-free/css/all.min.css';
+  import '@fontsource/nunito/400.css';
+  import '@fontsource/nunito/500.css';
+  import '@fontsource/nunito/600.css';
+  import '@fontsource/nunito/700.css';
+  import '@fontsource/nunito/800.css';
   import '$lib/akse-theme.css';
 
   let { children } = $props();
 </script>
 
 <svelte:head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-  <!-- Standalone-font (matcher --akse-font i akse-theme.css). Host bruker egen font. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
-  />
+  <title>3D-майстерня · EduProstir</title>
 </svelte:head>
 
 {@render children?.()}
