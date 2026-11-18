@@ -863,12 +863,12 @@
     // For sketch-shapes endres B og D inne i Plantegning-editoren, ikke her —
     // skjul dem så de ikke ser ut til å være redigerbare.
     if (!isSketch) {
-      addLabel(s.id, 'size', 0, 'B', s.size[0],
+      addLabel(s.id, 'size', 0, config.texts.transformSizeWidthShort, s.size[0],
         new THREE.Vector3(px, pz - h / 2, -py + d / 2 + offset));
-      addLabel(s.id, 'size', 1, 'D', s.size[1],
+      addLabel(s.id, 'size', 1, config.texts.transformSizeDepthShort, s.size[1],
         new THREE.Vector3(px - w / 2 - offset, pz - h / 2, -py));
     }
-    addLabel(s.id, 'size', 2, 'H', s.size[2],
+    addLabel(s.id, 'size', 2, config.texts.transformSizeHeightShort, s.size[2],
       new THREE.Vector3(px + w / 2 + offset, pz, -py - d / 2));
 
     const cornerZ = Math.round(pz - h / 2);
@@ -928,9 +928,9 @@
     const offset = 10;
     const ids = shapes.map((s) => s.id);
 
-    addGroupSizeLabel(ids, 0, 'B', w, new THREE.Vector3(cx, cz - h / 2, -cy + d / 2 + offset));
-    addGroupSizeLabel(ids, 1, 'D', d, new THREE.Vector3(cx - w / 2 - offset, cz - h / 2, -cy));
-    addGroupSizeLabel(ids, 2, 'H', h, new THREE.Vector3(cx + w / 2 + offset, cz, -cy - d / 2));
+    addGroupSizeLabel(ids, 0, config.texts.transformSizeWidthShort, w, new THREE.Vector3(cx, cz - h / 2, -cy + d / 2 + offset));
+    addGroupSizeLabel(ids, 1, config.texts.transformSizeDepthShort, d, new THREE.Vector3(cx - w / 2 - offset, cz - h / 2, -cy));
+    addGroupSizeLabel(ids, 2, config.texts.transformSizeHeightShort, h, new THREE.Vector3(cx + w / 2 + offset, cz, -cy - d / 2));
 
     const cornerZ = Math.round(minZ);
     addGroupZLiftLabel(ids, cornerZ, new THREE.Vector3(cx, cz + h / 2 + offset, -cy));
@@ -999,7 +999,7 @@
     const div = document.createElement('div');
     div.className = 'akse-dim-label';
     div.style.cssText = DIM_LABEL_CSS;
-    div.textContent = `${abbr}: ${Math.round(currentValue)} mm`;
+    div.textContent = `${abbr}: ${Math.round(currentValue)} ${config.texts.unitMm}`;
 
     div.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1059,7 +1059,7 @@
     const div = document.createElement('div');
     div.className = 'akse-dim-label';
     div.style.cssText = DIM_LABEL_CSS;
-    div.textContent = `Z: ${Math.round(cornerZ)} mm`;
+    div.textContent = `Z: ${Math.round(cornerZ)} ${config.texts.unitMm}`;
 
     div.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1134,7 +1134,7 @@
 
     if (!allSameGroup) {
       const btn = document.createElement('button');
-      btn.textContent = 'Grupper';
+      btn.textContent = config.texts.sceneGroup;
       btn.style.cssText = ACTION_BTN_CSS('var(--primary-color, #2563eb)');
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1143,7 +1143,7 @@
       wrap.appendChild(btn);
     } else {
       const btn = document.createElement('button');
-      btn.textContent = 'Avgrupper';
+      btn.textContent = config.texts.sceneUngroup;
       btn.style.cssText = ACTION_BTN_CSS('#f59e0b');
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1154,7 +1154,7 @@
 
     // Slett-knapp for begge tilstander
     const delBtn = document.createElement('button');
-    delBtn.textContent = 'Slett';
+    delBtn.textContent = config.texts.sceneDelete;
     delBtn.style.cssText = ACTION_BTN_CSS('#ef4444');
     delBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1225,7 +1225,7 @@
     const div = document.createElement('div');
     div.className = 'akse-dim-label';
     div.style.cssText = DIM_LABEL_CSS;
-    div.textContent = `${abbr}: ${Math.round(value)} mm`;
+    div.textContent = `${abbr}: ${Math.round(value)} ${config.texts.unitMm}`;
 
     div.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1291,7 +1291,7 @@
     const div = document.createElement('div');
     div.className = 'akse-dim-label';
     div.style.cssText = DIM_LABEL_CSS;
-    div.textContent = `Z: ${Math.round(cornerZ)} mm`;
+    div.textContent = `Z: ${Math.round(cornerZ)} ${config.texts.unitMm}`;
 
     div.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1571,7 +1571,7 @@
 
   {#if store.pendingShapeKind}
     <div class="place-hint">
-      Klikk på arbeidsflaten for å plassere figuren — eller trykk Esc for å avbryte
+      {config.texts.scenePlaceHint}
     </div>
   {/if}
 
@@ -1677,14 +1677,14 @@
 
         {#if gizmoMode === 'translate'}
           <div class="snap-row">
-            <span class="snap-label">Snap:</span>
+            <span class="snap-label">{config.texts.transformSnap}</span>
             {#each [0.1, 0.5, 1, 10] as mm}
               <button
                 type="button"
                 class="snap-pill"
                 class:active={moveSnapMm === mm}
                 onclick={() => setMoveSnap(mm)}
-              >{mm} mm</button>
+              >{mm} {config.texts.unitMm}</button>
             {/each}
           </div>
         {/if}

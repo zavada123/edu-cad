@@ -266,9 +266,9 @@
         <div class="presets-label">{config.texts.plantegningPolygonForm}</div>
         <div class="presets-row two-col">
           <button type="button" class="preset-btn" class:active={!single.starMode}
-                  title={config.texts.plantegningPolygonRegular} onclick={() => setPolygonMode(false)}>⬡ Normal</button>
+                  title={config.texts.plantegningPolygonRegular} onclick={() => setPolygonMode(false)}>{config.texts.plantegningPolygonRegularShort}</button>
           <button type="button" class="preset-btn" class:active={single.starMode}
-                  title={config.texts.plantegningPolygonStar} onclick={() => setPolygonMode(true)}>★ Stjerne</button>
+                  title={config.texts.plantegningPolygonStar} onclick={() => setPolygonMode(true)}>{config.texts.plantegningPolygonStarShort}</button>
         </div>
       </div>
     {/if}

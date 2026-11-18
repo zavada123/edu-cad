@@ -346,7 +346,7 @@
     <div class="prop-section">
       <h4 class="property-label">{config.texts.transformSizeLabel}</h4>
       <div class="vec3">
-        {#each ['B', 'D', 'H'] as axis, i}
+        {#each [config.texts.transformSizeWidthShort, config.texts.transformSizeDepthShort, config.texts.transformSizeHeightShort] as axis, i}
           {@const sketchLocked = single.kind === 'sketch' && (i === 0 || i === 1)}
           <div class="dim-field">
             <label for="size-{axis}">{axis}</label>
@@ -491,7 +491,7 @@
     <div class="prop-section">
       <h4 class="property-label">{config.texts.transformGroupSizeLabel}</h4>
       <div class="vec3">
-        {#each ['B', 'D', 'H'] as axis, i}
+        {#each [config.texts.transformSizeWidthShort, config.texts.transformSizeDepthShort, config.texts.transformSizeHeightShort] as axis, i}
           <div class="dim-field">
             <label for="gsize-{axis}">{axis}</label>
             <input

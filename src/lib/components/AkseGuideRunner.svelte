@@ -15,9 +15,11 @@
 
   const config = getAkseConfig();
 
-  let { guide, onClose = () => {} } = $props<{
+  let { guide, onClose = () => {}, onComplete = () => {} } = $props<{
     guide: AkseGuide;
     onClose?: () => void;
+    /** Викликається один раз, коли всі кроки уроку пройдено (EduProstir ставить уроку галочку). */
+    onComplete?: (guideId: string) => void;
   }>();
 
   const store = getContext<ProjectStore>(STORE_CONTEXT_KEY);
@@ -76,6 +78,14 @@
       localStorage.removeItem(progressKey());
     } catch {}
   }
+
+  let completeReported = false;
+  $effect(() => {
+    if (allDone && !completeReported) {
+      completeReported = true;
+      onComplete(guide.id);
+    }
+  });
 
   // ─── Reaktiv validering mot prosjektets figurer ──────────────
   // Leser også activeSketchData så sketch-steg valideres live mens
@@ -213,7 +223,7 @@
           onclick={() => (imageModalOpen = true)}
           aria-label={config.texts.guideChromeShowImageLarge}
         >
-          <img src={currentStep.imageUrl} alt="Instruksjon for {currentStep.title}" />
+          <img src={currentStep.imageUrl} alt={interpolate(config.texts.guideChromeImageAlt, { title: currentStep.title })} />
         </button>
       {/if}
 
@@ -255,7 +265,7 @@
       tabindex="-1"
     >
       <button class="image-modal-close" onclick={() => (imageModalOpen = false)} aria-label={config.texts.commonClose}>×</button>
-      <img class="image-modal-img" src={currentStep.imageUrl} alt="Instruksjon for {currentStep.title}" />
+      <img class="image-modal-img" src={currentStep.imageUrl} alt={interpolate(config.texts.guideChromeImageAlt, { title: currentStep.title })} />
     </div>
   {/if}
 {/if}

@@ -85,6 +85,21 @@ export interface AkseTexts {
   transformRotateAxis: string;       // '{axis}'
   transformRotationAxisDegrees: string; // '{axis}'
   transformSizeLabel: string;
+  transformSizeWidthShort: string;   // підпис поля ширини: B / W / Ш
+  transformSizeDepthShort: string;   // D / D / Г
+  transformSizeHeightShort: string;  // H / H / В
+  scenePlaceHint: string;
+  unitMm: string;
+  exportEmpty: string;
+  exportBelowPlate: string;
+  exportFloating: string;
+  exportOutOfBounds: string;
+  sceneGroup: string;
+  sceneUngroup: string;
+  sceneDelete: string;
+  scribblePreviewError: string;
+  plantegningPolygonRegularShort: string;
+  plantegningPolygonStarShort: string;
   transformDecreaseSize: string;     // '{axis}'
   transformIncreaseSize: string;     // '{axis}'
   transformSketchLockedTooltip: string;
@@ -265,6 +280,7 @@ export interface AkseTexts {
   guideChromeStepPassed: string;
   guideChromeStepWaiting: string;
   guideChromeShowImageLarge: string;
+  guideChromeImageAlt: string;
   guideChromeBack: string;
   guideChromeNext: string;
   guideChromeMarkPassed: string;
@@ -370,6 +386,21 @@ export const NB_TEXTS: AkseTexts = {
   transformRotateAxis: 'Roter rundt {axis}-aksen',
   transformRotationAxisDegrees: 'Rotasjon rundt {axis}-aksen i grader',
   transformSizeLabel: 'Størrelse (mm)',
+  transformSizeWidthShort: 'B',
+  transformSizeDepthShort: 'D',
+  transformSizeHeightShort: 'H',
+  scenePlaceHint: 'Klikk på arbeidsflaten for å plassere figuren — eller trykk Esc for å avbryte',
+  unitMm: 'mm',
+  exportEmpty: 'Prosjektet er tomt eller består bare av hull — ingenting å printe.',
+  exportBelowPlate: 'Noe ligger under printplaten. Flytt figurene opp slik at de står på eller over platen (bunnen på z = 0).',
+  exportFloating: 'Ingen figurer ligger på printplaten — modellen svever i lufta. Senk figurene ned til platen før du printer.',
+  exportOutOfBounds: 'Modellen går utenfor printområdet ({size} mm). Vil du eksportere likevel?',
+  sceneGroup: 'Grupper',
+  sceneUngroup: 'Avgrupper',
+  sceneDelete: 'Slett',
+  scribblePreviewError: 'Kunne ikke oppdatere 3D',
+  plantegningPolygonRegularShort: '⬡ Normal',
+  plantegningPolygonStarShort: '★ Stjerne',
   transformDecreaseSize: 'Reduser størrelse {axis}',
   transformIncreaseSize: 'Øk størrelse {axis}',
   transformSketchLockedTooltip: 'Endre i Plantegning-editor',
@@ -540,6 +571,7 @@ export const NB_TEXTS: AkseTexts = {
   guideChromeStepPassed: '✓ Du har gjort det!',
   guideChromeStepWaiting: '⏳ Venter på handling…',
   guideChromeShowImageLarge: 'Vis bilde i stort format',
+  guideChromeImageAlt: 'Instruksjon for {title}',
   guideChromeBack: 'Tilbake',
   guideChromeNext: 'Neste →',
   guideChromeMarkPassed: 'Forstått, gå videre',
@@ -639,6 +671,21 @@ export const EN_TEXTS: AkseTexts = {
   transformRotateAxis: 'Rotate around the {axis} axis',
   transformRotationAxisDegrees: 'Rotation around the {axis} axis in degrees',
   transformSizeLabel: 'Size (mm)',
+  transformSizeWidthShort: 'W',
+  transformSizeDepthShort: 'D',
+  transformSizeHeightShort: 'H',
+  scenePlaceHint: 'Click the work plane to place the shape — or press Esc to cancel',
+  unitMm: 'mm',
+  exportEmpty: 'The project is empty or only has holes — nothing to print.',
+  exportBelowPlate: 'Something is below the print bed. Move the shapes up so they stand on or above the bed (bottom at z = 0).',
+  exportFloating: 'No shape rests on the print bed — the model floats in the air. Lower the shapes onto the bed before printing.',
+  exportOutOfBounds: 'The model goes outside the print area ({size} mm). Export anyway?',
+  sceneGroup: 'Group',
+  sceneUngroup: 'Ungroup',
+  sceneDelete: 'Delete',
+  scribblePreviewError: 'Could not update 3D',
+  plantegningPolygonRegularShort: '⬡ Regular',
+  plantegningPolygonStarShort: '★ Star',
   transformDecreaseSize: 'Decrease size {axis}',
   transformIncreaseSize: 'Increase size {axis}',
   transformSketchLockedTooltip: 'Change in the Blueprint editor',
@@ -809,6 +856,7 @@ export const EN_TEXTS: AkseTexts = {
   guideChromeStepPassed: '✓ You did it!',
   guideChromeStepWaiting: '⏳ Waiting for action…',
   guideChromeShowImageLarge: 'Show image at full size',
+  guideChromeImageAlt: 'Instructions for {title}',
   guideChromeBack: 'Back',
   guideChromeNext: 'Next →',
   guideChromeMarkPassed: 'Got it, continue',
@@ -908,6 +956,21 @@ export const UK_TEXTS: AkseTexts = {
   transformRotateAxis: 'Повернути навколо осі {axis}',
   transformRotationAxisDegrees: 'Кут повороту навколо осі {axis} у градусах',
   transformSizeLabel: 'Розмір (мм)',
+  transformSizeWidthShort: 'Ш',
+  transformSizeDepthShort: 'Г',
+  transformSizeHeightShort: 'В',
+  scenePlaceHint: 'Клацни на робочій площині, щоб поставити фігуру, або натисни Esc, щоб скасувати',
+  unitMm: 'мм',
+  exportEmpty: 'Проєкт порожній або в ньому лише отвори: друкувати нічого.',
+  exportBelowPlate: 'Частина моделі під столом принтера. Підніми фігури, щоб вони стояли на столі або над ним (низ на z = 0).',
+  exportFloating: 'Жодна фігура не стоїть на столі: модель висить у повітрі. Опусти фігури на стіл, перш ніж друкувати.',
+  exportOutOfBounds: 'Модель виходить за межі стола принтера ({size} мм). Все одно завантажити?',
+  sceneGroup: 'Згрупувати',
+  sceneUngroup: 'Розгрупувати',
+  sceneDelete: 'Видалити',
+  scribblePreviewError: 'Не вдалося оновити 3D',
+  plantegningPolygonRegularShort: '⬡ Звичайний',
+  plantegningPolygonStarShort: '★ Зірка',
   transformDecreaseSize: 'Зменшити розмір {axis}',
   transformIncreaseSize: 'Збільшити розмір {axis}',
   transformSketchLockedTooltip: 'Змінюється в редакторі креслення',
@@ -1078,6 +1141,7 @@ export const UK_TEXTS: AkseTexts = {
   guideChromeStepPassed: '✓ Готово!',
   guideChromeStepWaiting: '⏳ Чекаю, поки ти це зробиш…',
   guideChromeShowImageLarge: 'Показати картинку повністю',
+  guideChromeImageAlt: 'Підказка до кроку «{title}»',
   guideChromeBack: 'Назад',
   guideChromeNext: 'Далі →',
   guideChromeMarkPassed: 'Зрозуміло, далі',

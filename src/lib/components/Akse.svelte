@@ -30,6 +30,7 @@
     maxStlTriangles = 500_000,
     guide = null,
     onGuideClose,
+    onGuideComplete,
     onOpenGuides,
   } = $props<{
     storage?: AkseStoragePort;
@@ -48,6 +49,8 @@
     guide?: AkseGuide | null;
     /** Kalles når brukeren lukker guiden (host nullstiller typisk `guide`-prop-en). */
     onGuideClose?: () => void;
+    /** Kalles én gang når alle steg i guiden er passert. */
+    onGuideComplete?: (guideId: string) => void;
     /** Vis «Start en guide»-knapp i toolbaren; host åpner sin guide-velger. */
     onOpenGuides?: () => void;
   }>();
@@ -299,7 +302,7 @@
   </div>
   {#if guide}
     {#key guide.id}
-      <AkseGuideRunner {guide} onClose={() => onGuideClose?.()} />
+      <AkseGuideRunner {guide} onClose={() => onGuideClose?.()} onComplete={(id: string) => onGuideComplete?.(id)} />
     {/key}
   {/if}
 </div>

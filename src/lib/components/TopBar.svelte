@@ -28,7 +28,7 @@
     // SceneCanvas allerede har kompilert, så eksporten er rask. Motoren disposes
     // IKKE her — den eies av Akse.svelte og deles med scenen.
     const compiled = csgEngine.compile(store.project.shapes);
-    const validation = validateForExport(compiled, store.project.workplaneSize);
+    const validation = validateForExport(compiled, store.project.workplaneSize, config.texts);
 
     if (!validation.ok) {
       alert(validation.warning);
