@@ -15,7 +15,7 @@
   import { preloadFont } from '$lib/akse/textGeometry';
   import { setAkseConfig, type AkseStoragePort, type AkseSession } from '$lib/config';
   import { detectBrowserStorage, type StorageCapabilities } from '$lib/capabilities';
-  import { resolveTexts, type AkseTexts, type AkseLocale } from '$lib/texts';
+  import { resolveTexts, AKSE_LOCALES, type AkseTexts, type AkseLocale } from '$lib/texts';
 
   let {
     storage,
@@ -26,7 +26,7 @@
     fontUrl = '/fonts/inter-regular.ttf',
     loadError = null,
     texts = undefined,
-    locale = 'no',
+    locale = 'uk',
     maxStlTriangles = 500_000,
     guide = null,
     onGuideClose,
@@ -57,7 +57,7 @@
   function readStoredLocale(): AkseLocale | null {
     if (typeof localStorage === 'undefined') return null;
     const v = localStorage.getItem(LOCALE_KEY);
-    return v === 'no' || v === 'en' ? v : null;
+    return (AKSE_LOCALES as readonly string[]).includes(v ?? '') ? (v as AkseLocale) : null;
   }
   let localeState = $state<AkseLocale>(readStoredLocale() ?? locale);
   function setLocale(l: AkseLocale) {

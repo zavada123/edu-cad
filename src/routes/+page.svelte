@@ -21,7 +21,7 @@
 
   // Default to English; ?lang=no gives Norwegian.
   const initialLocale: AkseLocale = $derived(
-    $page.url.searchParams.get('lang') === 'no' ? 'no' : 'en',
+    (['no', 'en'] as const).find((l) => l === $page.url.searchParams.get('lang')) ?? 'uk',
   );
 
   // Sky på kun når ?cloud er i URL-en.
@@ -385,9 +385,10 @@
   };
 
   // Select guide variant based on locale.
-  const activeDemoGuide = $derived(initialLocale === 'en' ? demoGuideEn : demoGuide);
+  // Українські уроки з'являться на етапі 3, а поки показуємо англійські.
+  const activeDemoGuide = $derived(initialLocale === 'no' ? demoGuide : demoGuideEn);
   const activeNavneskiltGuide = $derived(
-    initialLocale === 'en' ? navneskiltGuideEn : navneskiltGuide,
+    initialLocale === 'no' ? navneskiltGuide : navneskiltGuideEn,
   );
 
   let guideOpen = $state(false);

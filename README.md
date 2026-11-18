@@ -1,3 +1,18 @@
+# edu-cad · 3D-майстерня
+
+Тренажер 3D-моделювання для курсу 3D-друку на [eduprostir.com](https://eduprostir.com): фігури, отвори, групування, розміри в міліметрах і файл STL для принтера.
+Форк [Akse](https://github.com/joachimhs/akse3d) під AGPL-3.0-only, подробиці в [NOTICE.md](NOTICE.md). Інтерфейс українською за замовчуванням (`?lang=en` чи `?lang=no` для інших мов).
+
+```
+npm ci
+npm run dev      # розробка
+npm run build    # статична збірка в build/
+```
+
+---
+
+*Нижче оригінальний README Akse.*
+
 # @skaperiet/akse
 
 Akse — a 3D modelling tool for kids and beginners ([akse3d.no](https://akse3d.no) / [akse3d.com](https://akse3d.com)).

@@ -12,7 +12,7 @@ export type {
 export type { StorageCapabilities, CapabilityState } from '$lib/capabilities';
 
 export type { AkseTexts, AkseLocale } from '$lib/texts';
-export { NB_TEXTS, EN_TEXTS } from '$lib/texts';
+export { NB_TEXTS, EN_TEXTS, UK_TEXTS, AKSE_LOCALES } from '$lib/texts';
 
 export type {
   AkseProject,
