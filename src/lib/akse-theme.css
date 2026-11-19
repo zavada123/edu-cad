@@ -13,8 +13,10 @@
     /* Font for standalone (akse3d.no). I host arver Akse appens font i stedet —
        var(--akse-font, inherit) på .akse-root faller tilbake til inherit. */
     --akse-font: 'Nunito', 'Trebuchet MS', system-ui, -apple-system, sans-serif;
-    --primary-color: #2563eb;
-    --primary-light-bg: #e8f0fe;
+    /* EduProstir: основний колір сайту (--primary = --pink-600, --primary-soft = --pink-50 у mriya-study),
+       щоб кнопки тренажера були того ж кольору, що й «Надіслати» на сайті. Решта кольорів Akse бере їх звідси. */
+    --primary-color: #e0185c;
+    --primary-light-bg: #fff0f5;
     --card-bg: #ffffff;
     --bg-secondary: #f4f6fb;
     --text-primary: #1e293b;
