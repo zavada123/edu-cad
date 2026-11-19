@@ -122,7 +122,7 @@
   .edu-links a:hover,
   .edu-links button:hover {
     background: #fff;
-    border-color: #2563eb;
+    border-color: var(--primary-color);
   }
   .edu-backdrop {
     position: fixed;
@@ -176,8 +176,8 @@
     cursor: pointer;
   }
   .edu-picker li button:hover {
-    border-color: #2563eb;
-    background: #eff6ff;
+    border-color: var(--primary-color);
+    background: var(--primary-light-bg);
   }
   .num {
     flex: none;
@@ -186,7 +186,7 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: #2563eb;
+    background: var(--primary-color);
     color: #fff;
     font-weight: 700;
   }
