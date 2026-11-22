@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-  <title>3D-майстерня · EduProstir</title>
+  <title>3D-моделювання онлайн: 3D-майстерня для учнів · EduProstir</title>
 </svelte:head>
 
 {@render children?.()}
